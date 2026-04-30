@@ -1,0 +1,490 @@
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">Tushar & Khushboo - Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Dancing+Script:wght@400;500&family=Inter:wght@200;300;400&display=swap"
+          rel="stylesheet">
+</head>
+<body class="bg-rose-50 text-slate-700 font-['Inter',sans-serif] antialiased selection:bg-rose-200 selection:text-rose-900 relative min-h-screen flex flex-col">
+
+<!-- Audio Element -->
+<audio id="bgMusic" loop="" preload="auto">
+    <source src="https://raw.githubusercontent.com/tushardubey121/wedding-images/main/music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating Controls (Language & Music) -->
+<div class="fixed top-4 right-4 z-50 flex items-center gap-3 reveal-item opacity-100 translate-y-0 transition-all duration-[800ms] ease-out">
+    <!-- Language Toggle -->
+    <div class="bg-white/70 backdrop-blur-md rounded-full p-1 border border-white/50 shadow-sm flex items-center text-sm font-normal text-slate-500">
+        <button class="px-3 py-1.5 rounded-full bg-rose-100 text-rose-800 transition-colors" id="btnEn">EN</button>
+        <button class="px-3 py-1.5 rounded-full hover:text-rose-800 transition-colors" id="btnHi">HI</button>
+    </div>
+    <!-- Music Toggle -->
+    <button id="musicToggle"
+            class="w-10 h-10 bg-white/70 backdrop-blur-md rounded-full border border-white/50 shadow-sm flex items-center justify-center text-rose-600 hover:bg-rose-50 transition-colors">
+        <i data-lucide="volume-x" id="iconMuted" class="w-5 h-5"></i>
+        <i data-lucide="volume-2" id="iconPlaying" class="w-5 h-5 hidden"></i>
+    </button>
+</div>
+
+<!-- 1. Home Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-12 pb-20 px-4">
+    <!-- Subtle radial glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-rose-200/30 blur-[100px] rounded-full -z-10"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#fecdd3_1px,transparent_1px)] bg-[size:24px_24px] opacity-30 -z-20"></div>
+
+    <div class="relative z-10 text-center flex flex-col items-center w-full max-w-4xl mx-auto reveal-item opacity-100 translate-y-0 transition-all duration-[800ms] ease-out">
+
+        <p class="font-['Dancing_Script',cursive] text-2xl md:text-4xl text-rose-500 mb-6 tracking-wide" data-i18n="quote">"Written in
+            fate, found by heart."</p>
+
+        <h1 class="font-['Cormorant_Garamond',serif] text-6xl md:text-8xl lg:text-9xl tracking-tight text-rose-900 mb-4 font-normal flex flex-wrap justify-center items-center gap-2 md:gap-4">
+            <span data-i18n="tushar">Tushar</span>
+            <span class="text-rose-400 animate-pulse text-4xl md:text-6xl inline-block mt-2">❤️</span>
+            <span data-i18n="khushboo">Khushboo</span>
+        </h1>
+
+        <p class="text-base md:text-lg tracking-[0.2em] uppercase text-rose-600 font-normal mb-12" data-i18n="wedding_date">26th June 2026</p>
+
+        <!-- Romantic Couple Image Container -->
+        <div class="relative w-64 h-64 md:w-80 md:h-80 mb-16 group">
+            <!-- Decorative traditional ring -->
+            <div class="absolute -inset-4 border border-rose-300/50 rounded-full animate-[spin_20s_linear_infinite] border-dashed"></div>
+            <div class="absolute -inset-2 border border-rose-200 rounded-full"></div>
+
+            <div class="w-full h-full rounded-full overflow-hidden shadow-2xl shadow-rose-200/50 relative z-10 bg-rose-100" style="transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+                <!-- Updated Placeholder Image - Silhouette Proposal -->
+                <img src="https://raw.githubusercontent.com/tushardubey121/wedding-images/main/image_3.jpeg"
+                     alt="Tushar and Khushboo"
+                     class="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-rose-500/10 mix-blend-overlay"></div>
+            </div>
+        </div>
+
+        <!-- Live Countdown -->
+        <div class="flex items-center justify-center gap-4 md:gap-8 mb-16 bg-white/40 backdrop-blur-sm py-4 px-6 md:px-10 rounded-3xl border border-white/60 shadow-sm">
+            <div class="flex flex-col items-center min-w-[3rem]">
+                <span id="days"
+                      class="font-['Cormorant_Garamond',serif] text-3xl md:text-5xl tracking-tight text-rose-800 font-normal">00</span>
+                <span class="text-sm uppercase tracking-widest text-slate-500 mt-1" data-i18n="days_label">Days</span>
+            </div>
+            <span class="text-2xl text-rose-300 font-['Cormorant_Garamond',serif] pb-4">:</span>
+            <div class="flex flex-col items-center min-w-[3rem]">
+                <span id="hours"
+                      class="font-['Cormorant_Garamond',serif] text-3xl md:text-5xl tracking-tight text-rose-800 font-normal">00</span>
+                <span class="text-sm uppercase tracking-widest text-slate-500 mt-1" data-i18n="hrs_label">Hrs</span>
+            </div>
+            <span class="text-2xl text-rose-300 font-['Cormorant_Garamond',serif] pb-4">:</span>
+            <div class="flex flex-col items-center min-w-[3rem]">
+                <span id="mins"
+                      class="font-['Cormorant_Garamond',serif] text-3xl md:text-5xl tracking-tight text-rose-800 font-normal">00</span>
+                <span class="text-sm uppercase tracking-widest text-slate-500 mt-1" data-i18n="mins_label">Mins</span>
+            </div>
+            <span class="text-2xl text-rose-300 font-['Cormorant_Garamond',serif] pb-4">:</span>
+            <div class="flex flex-col items-center min-w-[3rem]">
+                <span id="secs"
+                      class="font-['Cormorant_Garamond',serif] text-3xl md:text-5xl tracking-tight text-rose-800 font-normal">00</span>
+                <span class="text-sm uppercase tracking-widest text-slate-500 mt-1" data-i18n="secs_label">Secs</span>
+            </div>
+        </div>
+
+        <a href="#events"
+           class="inline-flex items-center gap-3 px-8 py-3.5 bg-rose-800 text-white rounded-full text-base font-normal hover:bg-rose-700 hover:-translate-y-0.5 transition-all shadow-lg shadow-rose-800/20 group">
+            <span data-i18n="celebrate_btn">Celebrate With Us</span>
+            <i data-lucide="arrow-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+        </a>
+    </div>
+</section>
+
+<!-- 2. Our Story -->
+<section class="py-24 px-4 bg-white/60 relative" id="story">
+    <!-- Top wave separator -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-rose-200 to-transparent"></div>
+
+    <div class="max-w-3xl mx-auto text-center reveal-item opacity-0 translate-y-5 transition-all duration-[800ms] ease-out">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-rose-50 text-rose-400 mb-8">
+            <i data-lucide="book-open" class="w-6 h-6"></i>
+        </div>
+
+        <h2 class="font-['Cormorant_Garamond',serif] text-4xl md:text-5xl tracking-tight text-rose-900 mb-12 font-normal" data-i18n="our_story_title">
+            Our Story</h2>
+
+        <div class="space-y-8 font-extralight text-slate-600 leading-relaxed text-base md:text-lg">
+            <p data-i18n="story_p1">
+                We knew each other since 2017, but life had its own plans and we lost touch. Then one day, on <span
+                    class="font-normal text-rose-800">21st December 2021</span>, something magical happened—Khushboo
+                suddenly remembered Tushar and reached out with a simple...
+            </p>
+
+            <div class="py-6">
+                <p class="font-['Cormorant_Garamond',serif] text-2xl md:text-3xl text-rose-600 italic tracking-tight" data-i18n="story_quote">
+                    "Dubey ji kaise hai?"</p>
+            </div>
+
+            <p data-i18n="story_p2">
+                And just like that, destiny reconnected two hearts.
+            </p>
+
+            <div class="my-12 h-px w-24 bg-rose-200 mx-auto"></div>
+
+            <p data-i18n="story_p3">
+                Not your typical proposal—Khushboo made sure it happened! On a beach, with a ring she had already
+                bought, she made Tushar propose. Because when you know, you know.
+            </p>
+
+            <div class="p-8 mt-12 bg-rose-50/50 rounded-2xl border border-rose-100/50">
+                <p class="font-['Cormorant_Garamond',serif] text-xl md:text-2xl text-rose-800 tracking-tight leading-snug" data-i18n="story_p4">
+                    Our story is proof of faith, destiny, and the red string theory—what's meant for you always finds
+                    its way back.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Event Details Section -->
+<section id="events" class="py-24 px-4 relative">
+    <div class="absolute inset-0 bg-[radial-gradient(#fecdd3_1px,transparent_1px)] bg-[size:24px_24px] opacity-30 -z-10"></div>
+
+    <div class="max-w-5xl mx-auto reveal-item opacity-0 translate-y-5 transition-all duration-[800ms] ease-out">
+        <h2 class="font-['Cormorant_Garamond',serif] text-4xl md:text-5xl tracking-tight text-rose-900 mb-16 text-center font-normal" data-i18n="celebrations_title">
+            The Celebrations</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <!-- Haldi -->
+            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm hover:shadow-md hover:border-rose-100 transition-all relative overflow-hidden group flex flex-col h-full">
+                <div class="absolute -top-6 -right-6 text-rose-50 opacity-50 group-hover:opacity-100 group-hover:text-rose-100 transition-all duration-500 rotate-12">
+                    <i data-lucide="sun" class="w-32 h-32"></i>
+                </div>
+                <div class="relative z-10 flex-grow">
+                    <span class="inline-block px-3 py-1 bg-amber-50 text-amber-700 text-sm rounded-full font-normal mb-6" data-i18n="ceremony_label">Ceremony</span>
+                    <h3 class="font-['Cormorant_Garamond',serif] text-3xl tracking-tight text-rose-900 mb-2 font-normal" data-i18n="haldi_title">
+                        Haldi</h3>
+                    <p class="text-base font-extralight text-slate-500 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4 text-rose-400"></i>
+                        <span data-i18n="date_24_june">24th June 2026</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mehndi -->
+            <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm hover:shadow-md hover:border-rose-100 transition-all relative overflow-hidden group flex flex-col h-full mt-0 md:mt-8">
+                <div class="absolute -bottom-6 -right-6 text-rose-50 opacity-50 group-hover:opacity-100 group-hover:text-rose-100 transition-all duration-500 -rotate-12">
+                    <i data-lucide="leaf" class="w-32 h-32"></i>
+                </div>
+                <div class="relative z-10 flex-grow">
+                    <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-700 text-sm rounded-full font-normal mb-6" data-i18n="ceremony_label">Ceremony</span>
+                    <h3 class="font-['Cormorant_Garamond',serif] text-3xl tracking-tight text-rose-900 mb-2 font-normal" data-i18n="mehndi_title">
+                        Mehndi</h3>
+                    <p class="text-base font-extralight text-slate-500 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4 text-rose-400"></i>
+                        <span data-i18n="date_25_june">25th June 2026</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Wedding -->
+            <div class="bg-rose-800 text-white rounded-3xl p-8 shadow-lg shadow-rose-900/10 relative overflow-hidden group flex flex-col h-full">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-rose-700/50 rounded-full blur-3xl -z-0"></div>
+                <div class="relative z-10 flex-grow">
+                    <span class="inline-block px-3 py-1 bg-white/20 text-white text-sm rounded-full font-normal mb-6 backdrop-blur-sm" data-i18n="main_event_label">Main Event</span>
+                    <h3 class="font-['Cormorant_Garamond',serif] text-3xl tracking-tight text-white mb-2 font-normal" data-i18n="wedding_title">
+                        Wedding & Reception</h3>
+                    <div class="space-y-3 mt-4">
+                        <p class="text-base font-extralight text-rose-100 flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-4 h-4 text-rose-300"></i>
+                            <span data-i18n="date_26_june">26th June 2026</span>
+                        </p>
+                        <p class="text-base font-extralight text-rose-100 flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-rose-300"></i>
+                            <span data-i18n="time_7pm">7:00 PM onwards</span>
+                        </p>
+                    </div>
+                    <div class="mt-6 p-4 bg-rose-900/40 rounded-xl border border-rose-700/50 backdrop-blur-sm">
+                        <p class="text-sm text-rose-100/90 leading-relaxed" data-i18n="reception_note">
+                            Note: Reception will start from 7 PM onwards, please join accordingly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Details -->
+        <div class="bg-white/60 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white text-center max-w-3xl mx-auto">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-rose-50 text-rose-500 mb-6">
+                <i data-lucide="map-pin" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-['Cormorant_Garamond',serif] text-2xl tracking-tight text-rose-900 mb-2 font-normal" data-i18n="venue_title">Center
+                Park Lawn & A/C Banquet</h3>
+            <p class="text-base text-slate-500 font-extralight mb-8" data-i18n="venue_address">Mira Bhayandar Road, Mumbai</p>
+
+            <a href="https://maps.app.goo.gl/QXFBXGy6yDu7Pjhx8" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-6 py-2.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-full text-base font-normal hover:bg-rose-100 transition-colors">
+                <i data-lucide="map" class="w-5 h-5"></i>
+                <span data-i18n="view_map">View on Map</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Photo Gallery -->
+<section class="py-24 px-4 bg-white/40" id="gallery">
+    <div class="max-w-6xl mx-auto reveal-item opacity-0 translate-y-5 transition-all duration-[800ms] ease-out">
+        <h2 class="font-['Cormorant_Garamond',serif] text-4xl md:text-5xl tracking-tight text-rose-900 mb-4 text-center font-normal" data-i18n="moments_title">
+            Moments</h2>
+        <p class="text-center text-base text-slate-500 mb-12 font-extralight" data-i18n="moments_sub">Glimpses of our journey and special
+            moments.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+            <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
+                <img src="https://raw.githubusercontent.com/tushardubey121/wedding-images/main/image_2.jpeg"
+                     alt="Our Journey"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 saturate-50 group-hover:saturate-100">
+            </div>
+            <div class="rounded-2xl overflow-hidden relative group">
+                <img src="https://raw.githubusercontent.com/tushardubey121/wedding-images/main/image_1.jpeg" alt="Ring"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 saturate-50 group-hover:saturate-100">
+            </div>
+            <div class="rounded-2xl overflow-hidden relative group">
+                <img src="https://raw.githubusercontent.com/tushardubey121/wedding-images/main/image_4.jpeg" alt="Hands"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 saturate-50 group-hover:saturate-100">
+            </div>
+            <div class="col-span-2 rounded-2xl overflow-hidden relative group">
+                <img src="https://raw.githubusercontent.com/tushardubey121/wedding-images/main/image_5.jpeg"
+                     alt="Special Moments"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 saturate-50 group-hover:saturate-100 object-center">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Contact Section & Footer -->
+<footer class="mt-auto py-20 px-4 bg-rose-900 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(#fecdd3_1px,transparent_1px)] bg-[size:24px_24px] opacity-10 mix-blend-overlay"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto reveal-item opacity-0 translate-y-5 transition-all duration-[800ms] ease-out">
+        <h2 class="font-['Cormorant_Garamond',serif] text-3xl md:text-4xl tracking-tight text-white mb-8 font-normal" data-i18n="join_us">
+            Join us in celebrating our union</h2>
+
+        <a href="https://wa.me/918005468041" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-rose-900 rounded-full text-base font-normal hover:bg-rose-50 transition-colors shadow-lg shadow-black/10 mb-16">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span data-i18n="whatsapp_btn">Message Us on WhatsApp</span>
+        </a>
+
+        <div class="h-px w-full bg-rose-800/50 mb-12"></div>
+
+        <p class="font-['Cormorant_Garamond',serif] text-2xl md:text-4xl tracking-tight text-rose-200/80 mb-4">
+            #humara_ho_gaya_hai
+        </p>
+
+        <div class="flex items-center justify-center gap-2 font-['Cormorant_Garamond',serif] text-rose-100/60 mt-8">
+            <span>T</span>
+            <span class="text-sm">✦</span>
+            <span>K</span>
+        </div>
+    </div>
+</footer>
+
+<!-- Logic -->
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons({
+        attrs: {
+            'stroke-width': 1.5
+        }
+    });
+
+    // 1. Countdown Logic
+    const targetDate = new Date('June 26, 2026 00:00:00').getTime();
+
+    const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            document.getElementById('days').innerText = '00';
+            document.getElementById('hours').innerText = '00';
+            document.getElementById('mins').innerText = '00';
+            document.getElementById('secs').innerText = '00';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+        document.getElementById('mins').innerText = minutes.toString().padStart(2, '0');
+        document.getElementById('secs').innerText = seconds.toString().padStart(2, '0');
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 2. Audio Toggle Logic
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const iconMuted = document.getElementById('iconMuted');
+    const iconPlaying = document.getElementById('iconPlaying');
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            iconMuted.classList.remove('hidden');
+            iconPlaying.classList.add('hidden');
+        } else {
+            bgMusic.play();
+            iconMuted.classList.add('hidden');
+            iconPlaying.classList.remove('hidden');
+        }
+        isPlaying = !isPlaying;
+    });
+
+    document.body.addEventListener('click', () => {
+        if(!isPlaying && bgMusic.paused) {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                iconMuted.classList.add('hidden');
+                iconPlaying.classList.remove('hidden');
+            }).catch(() => {});
+        }
+    }, { once: true });
+
+    // 3. Scroll Reveal Animation using Utility Classes
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-5');
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-item').forEach(element => {
+        observer.observe(element);
+    });
+
+    // 4. Language Toggle Logic
+    const btnEn = document.getElementById('btnEn');
+    const btnHi = document.getElementById('btnHi');
+
+    const translations = {
+        en: {
+            title: "Tushar & Khushboo - Wedding Invitation",
+            quote: '"Written in fate, found by heart."',
+            tushar: "Tushar",
+            khushboo: "Khushboo",
+            wedding_date: "26th June 2026",
+            days_label: "Days",
+            hrs_label: "Hrs",
+            mins_label: "Mins",
+            secs_label: "Secs",
+            celebrate_btn: "Celebrate With Us",
+            our_story_title: "Our Story",
+            story_p1: 'We knew each other since 2017, but life had its own plans and we lost touch. Then one day, on <span class="font-normal text-rose-800">21st December 2021</span>, something magical happened—Khushboo suddenly remembered Tushar and reached out with a simple...',
+            story_quote: '"Dubey ji kaise hai?"',
+            story_p2: "And just like that, destiny reconnected two hearts.",
+            story_p3: "Not your typical proposal—Khushboo made sure it happened! On a beach, with a ring she had already bought, she made Tushar propose. Because when you know, you know.",
+            story_p4: "Our story is proof of faith, destiny, and the red string theory—what's meant for you always finds its way back.",
+            celebrations_title: "The Celebrations",
+            ceremony_label: "Ceremony",
+            main_event_label: "Main Event",
+            haldi_title: "Haldi",
+            mehndi_title: "Mehndi",
+            wedding_title: "Wedding & Reception",
+            date_24_june: "24th June 2026",
+            date_25_june: "25th June 2026",
+            date_26_june: "26th June 2026",
+            time_7pm: "7:00 PM onwards",
+            reception_note: "Note: Reception will start from 7 PM onwards, please join accordingly.",
+            venue_title: "Center Park Lawn & A/C Banquet",
+            venue_address: "Mira Bhayandar Road, Mumbai",
+            view_map: "View on Map",
+            moments_title: "Moments",
+            moments_sub: "Glimpses of our journey and special moments.",
+            join_us: "Join us in celebrating our union",
+            whatsapp_btn: "Message Us on WhatsApp"
+        },
+        hi: {
+            title: "तुषार और खुशबू - शादी का निमंत्रण",
+            quote: '"किस्मत में लिखा था, दिल ने ढूँढ लिया। "',
+            tushar: "तुषार",
+            khushboo: "खुशबू",
+            wedding_date: "२६ जून २०२६",
+            days_label: "दिन",
+            hrs_label: "घंटे",
+            mins_label: "मिनट",
+            secs_label: "सेकंड",
+            celebrate_btn: "हमारे साथ जश्न मनाएं",
+            our_story_title: "हमारी कहानी",
+            story_p1: 'हम २०१७ से एक-दूसरे को जानते थे, लेकिन किस्मत को कुछ और ही मंजूर था और हमारा संपर्क टूट गया। फिर एक दिन, <span class="font-normal text-rose-800">२१ दिसंबर २०२१</span> को, कुछ जादुई हुआ—खुशबू को अचानक तुषार की याद आई और उन्होंने बस इतना पूछा...',
+            story_quote: '"दुबे जी कैसे हैं?"',
+            story_p2: "और बस ऐसे ही, किस्मत ने दो दिलों को फिर से जोड़ दिया।",
+            story_p3: "यह कोई साधारण प्रपोजल नहीं था—खुशबू ने सुनिश्चित किया कि यह हो! एक समुद्र तट पर, एक अंगूठी के साथ जो उन्होंने पहले ही खरीद ली थी, उन्होंने तुषार से प्रपोज करवाया। क्योंकि जब आपको पता होता है, तो पता होता है।",
+            story_p4: "हमारी कहानी विश्वास, नियति और रेड स्ट्रिंग थ्योरी का प्रमाण है—जो आपके लिए बना है, वह हमेशा अपना रास्ता वापस पा लेता है।",
+            celebrations_title: "समारोह",
+            ceremony_label: "रस्म",
+            main_event_label: "मुख्य समारोह",
+            haldi_title: "हल्दी",
+            mehndi_title: "मेहंदी",
+            wedding_title: "शादी और रिसेप्शन",
+            date_24_june: "२४ जून २०२६",
+            date_25_june: "२५ जून २०२६",
+            date_26_june: "२६ जून २०२६",
+            time_7pm: "शाम ७:०० बजे से",
+            reception_note: "नोट: रिसेप्शन शाम ७ बजे से शुरू होगा, कृपया उसी के अनुसार शामिल हों।",
+            venue_title: "सेंटर पार्क लॉन और ए/सी बैंक्वेट",
+            venue_address: "मीरा भयंदर रोड, मुंबई",
+            view_map: "मैप पर देखें",
+            moments_title: "कुछ पल",
+            moments_sub: "हमारे सफर और खास पलों की झलकियाँ।",
+            join_us: "हमारे मिलन के जश्न में शामिल हों",
+            whatsapp_btn: "हमें व्हाट्सएप पर मैसेज करें"
+        }
+    };
+
+    function updateLanguage(lang) {
+        document.title = translations[lang].title;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+        document.documentElement.lang = lang;
+
+        if (lang === 'hi') {
+            btnHi.classList.add('bg-rose-100', 'text-rose-800');
+            btnHi.classList.remove('hover:text-rose-800');
+            btnEn.classList.remove('bg-rose-100', 'text-rose-800');
+            btnEn.classList.add('hover:text-rose-800');
+        } else {
+            btnEn.classList.add('bg-rose-100', 'text-rose-800');
+            btnEn.classList.remove('hover:text-rose-800');
+            btnHi.classList.remove('bg-rose-100', 'text-rose-800');
+            btnHi.classList.add('hover:text-rose-800');
+        }
+    }
+
+    btnHi.addEventListener('click', () => updateLanguage('hi'));
+    btnEn.addEventListener('click', () => updateLanguage('en'));
+</script>
+
+</body>
+</html>
